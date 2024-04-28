@@ -1,20 +1,21 @@
 package com.invio.shopping.service;
 
+import com.invio.shopping.dto.AddressResponse;
 import com.invio.shopping.entity.Address;
 
 import java.util.List;
 
 public interface AddressService {
 
-    Address save(Address address);
+    AddressResponse save(Address address);
 
-    List<Address> findAll();
+    List<AddressResponse> findAll();
 
-    Address findById(Long id);
+    AddressResponse findById(Long id);
 
-    Address delete(Long id);
+    AddressResponse delete(Long id);
 
-    Address update(Long id,Address address);
+    AddressResponse update(Long id,Address address);
 
 
 }
