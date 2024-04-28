@@ -1,5 +1,6 @@
 package com.invio.shopping.controller;
 
+import com.invio.shopping.dto.AddressResponse;
 import com.invio.shopping.entity.Address;
 import com.invio.shopping.entity.User;
 import com.invio.shopping.service.AddressService;
@@ -18,7 +19,7 @@ public class AddressController {
     private final UserService userService;
 
     @PostMapping("/{id}")
-    public Address save(@RequestBody Address address,@PathVariable Long id){
+    public AddressResponse save(@RequestBody Address address, @PathVariable Long id){
         User user = userService.findByUserId(id);
         user.getAddressList().add(address);
         address.setUser(user);
@@ -28,22 +29,22 @@ public class AddressController {
     }
 
     @GetMapping("/")
-    public List<Address> findAll(){
+    public List<AddressResponse> findAll(){
         return addressService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Address findById(@PathVariable Long id){
+    public AddressResponse findById(@PathVariable Long id){
         return addressService.findById(id);
     }
 
     @DeleteMapping("/{id}")
-    public Address delete(@PathVariable Long id){
+    public AddressResponse delete(@PathVariable Long id){
         return addressService.delete(id);
     }
 
     @PutMapping("/{id}")
-    public Address update(@PathVariable Long id,@RequestBody Address address){
+    public AddressResponse update(@PathVariable Long id,@RequestBody Address address){
         return addressService.update(id,address);
     }
 }
