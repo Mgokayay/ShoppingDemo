@@ -12,11 +12,12 @@ public class UserDtoConvertion {
     public static List<UserResponse> convertUserList(List<User> users){
         List<UserResponse> userResponses = new ArrayList<>();
         users.stream().forEach(user -> userResponses.add(new UserResponse(user.getId()
-        ,user.getName(),user.getSurname(),user.getEmail())));
+        ,user.getName(),user.getSurname(),user.getEmail(),AddressDtoConvertion.convertAddressList(user.getAddressList()))));
         return userResponses;
     }
 
     public static UserResponse convertUser(User user){
-        return new UserResponse(user.getId(), user.getEmail(), user.getSurname(), user.getEmail());
+        return new UserResponse(user.getId(), user.getEmail(), user.getSurname(), user.getEmail()
+        ,AddressDtoConvertion.convertAddressList(user.getAddressList()));
     }
 }
