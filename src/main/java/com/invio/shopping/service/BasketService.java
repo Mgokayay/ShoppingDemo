@@ -1,14 +1,17 @@
 package com.invio.shopping.service;
 
+import com.invio.shopping.dto.BasketResponse;
 import com.invio.shopping.entity.Basket;
 
 public interface BasketService {
 
-    Basket save(Basket basket);
+    BasketResponse save(Basket basket);
 
-    Basket findById(Long id);
+    BasketResponse findById(Long id);
 
-    Basket delete(Long id);
+    BasketResponse delete(Long id);
+
+    BasketResponse addToCart(Long basketId,Long productId);
 
 
 }
