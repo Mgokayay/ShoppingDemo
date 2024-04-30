@@ -58,6 +58,8 @@ public class Product {
     @Column(name = "colors")
     private List<String> colors;
 
+    private Integer count=0;
+
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "user_id")
     private Basket basket;
