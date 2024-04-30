@@ -13,5 +13,9 @@ public interface BasketService {
 
     BasketResponse addToCart(Long basketId,Long productId);
 
+    BasketResponse removeToCart(Long basketId,Long productId);
+
+    Basket findByBasketId(Long id);
+
 
 }
