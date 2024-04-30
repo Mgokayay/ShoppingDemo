@@ -20,7 +20,13 @@ public class Basket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Double totalPrice;
+
     @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "basket")
     private List<Product> productList = new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 }
