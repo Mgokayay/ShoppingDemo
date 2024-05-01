@@ -8,6 +8,9 @@ import com.invio.shopping.util.UserDtoConvertion;
 import lombok.AllArgsConstructor;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +18,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
 
@@ -84,5 +87,13 @@ public class UserServiceImpl implements UserService{
             return userOptional.get();
         }
         throw new CommonException("User not exist with given id " + id, HttpStatus.NOT_FOUND);
+    }
+
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userRepository.findByEmail(email).orElseThrow(()->{
+            throw new UsernameNotFoundException("User information is not in the system . ");
+        });
     }
 }
